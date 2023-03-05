@@ -1,36 +1,54 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import { UserContext } from '../context/UserContext';
+import { ConvoContext } from '../context/ConvoContext';
+import { getConvo, getUsers, createConvo } from '../actions';
 
-const Contact = ({ contact: {name, online, lastContacted} }) => {
+const Contact = ({ contact: { name, online, lastContacted, _id } }) => {
+    const { currConvo, setCurrConvo } = useContext(ConvoContext)
+    const { currUser } = useContext(UserContext)
+
+    const clickHandler = (e) => {
+        e.preventDefault()
+        getConvo(currUser, _id)
+            .then(data => {
+                console.log(data)
+                if (!data.conv) {
+                    createConvo(currUser, _id)
+                        .then(data => setCurrConvo(data.conv._id))
+                } else {
+                    setCurrConvo(data.conv._id)
+                }
+            })
+
+    }
+
     return (
-        <div>
+        <div onClick={clickHandler}>
             <h3>{name}</h3>
             {online && <small>online </small>}
-            <small>{lastContacted}</small>
+            <small>{ }</small>
         </div>
     )
 }
 
 const ContactsList = () => {
-    const [contacts, setContacts] = useState([
-        { _id: 1, name: 'Vitalya', online: true, lastContacted: 'yesterday' },
-        { _id: 2, name: 'Mama', online: false, lastContacted: '3d ago' },
-    ])
+    const { currUser, setCurrUser } = useContext(UserContext) // default user Ekaterina
+    const [contacts, setContacts] = useState([])
 
     useEffect(() => {
-        const fetchContacts = async () => {
-            const result = await fetch(`/api/contacts`)
-            console.log(result)
-            const data = await result.json()
-
-            setContacts(data)
+        if (currUser) {
+            getUsers()
+                .then(data => {
+                    setContacts(data.users.filter(user => user._id !== currUser))
+                })
         }
-        fetchContacts()
-    }, [])
+
+    }, [currUser])
 
     return (
         <div className='pane'>
-            {contacts && contacts.map(contact => <Contact contact={contact} key={contact._id}/>)}
+            {contacts && contacts.map(contact => <Contact contact={contact} key={contact._id} />)}
         </div>
     );
 };

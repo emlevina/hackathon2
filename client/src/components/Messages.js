@@ -1,9 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { getMessages } from '../actions';
 
-const Messages = () => {
+const Message = ({message: {text}, isMyMessage}) => {
     return (
         <div>
-            We are messages
+            <p style={isMyMessage ? {color: "red"} : {color: "blue"}}>{text}</p>
+        </div>
+    )
+}
+
+const Messages = ({data: [currConvo, currUser, dbUpdated, setDbUpdated]}) => {
+    const [messages, setMessages] = useState([])
+
+    useEffect(() => {
+        getMessages(currConvo).then(data => {
+            setMessages(data.messages)
+            setDbUpdated(false)
+        })
+    }, [currConvo, dbUpdated])
+
+    return (
+        <div>
+            {messages && messages.map(message => <Message key={message._id} message={message} isMyMessage={currUser === message.sender}/>)}
         </div>
     );
 };

@@ -3,11 +3,17 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { UserProvider } from './providers/userProvider';
+import { ConvoProvider } from './providers/convoProvider';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <ConvoProvider>
+      <UserProvider>
+        <App />
+      </UserProvider>
+    </ConvoProvider>
   </React.StrictMode>
 );
 

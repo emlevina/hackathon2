@@ -4,7 +4,7 @@ import { getMessages } from '../actions';
 const Message = ({message: {text}, isMyMessage}) => {
     return (
         <div>
-            <p style={isMyMessage ? {color: "red"} : {color: "blue"}}>{text}</p>
+            <p style={isMyMessage ? {textAlign: "right", background: "gray"} : {textAlign: "left", background: "lightgray"}}>{text}</p>
         </div>
     )
 }

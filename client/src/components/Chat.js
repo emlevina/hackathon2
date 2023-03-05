@@ -6,7 +6,7 @@ import styles from './chat.module.css';
 const Chat = () => {
     return (
         <div className={styles.chat}>
-            {[<ContactsList />]}
+            <ContactsList />
             <RightPane />
         </div>
     );

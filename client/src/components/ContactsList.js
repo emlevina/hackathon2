@@ -32,7 +32,7 @@ const Contact = ({ contact: { name, online, lastContacted, _id } }) => {
     )
 }
 
-const ContactsList = () => {
+const ContactsList = ({socket}) => {
     const { currUser, setCurrUser } = useContext(UserContext) // default user Ekaterina
     const [contacts, setContacts] = useState([])
 

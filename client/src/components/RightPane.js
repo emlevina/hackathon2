@@ -5,7 +5,7 @@ import { ConvoContext } from '../context/ConvoContext';
 import { UserContext } from '../context/UserContext';
 
 const RightPane = () => {
-    const { currConvo } = useContext(ConvoContext)
+    const { currConvo, socket } = useContext(ConvoContext)
     const { currUser } = useContext(UserContext)
     const [dbUpdated, setDbUpdated] = useState(false)
 

@@ -3,8 +3,9 @@ import { UserContext } from '../context/UserContext';
 import { getUsers } from '../actions';
 
 const Dropdown = () => {
-    const { setCurrUser } = useContext(UserContext)
+    const { currUser, setCurrUser, socket } = useContext(UserContext)
     const [options, setOptions] = useState([])
+
     useEffect(() => {
         getUsers().then(data => {
             console.log(data)
@@ -12,8 +13,13 @@ const Dropdown = () => {
         })
     }, [])
 
+    const handleChange = (e) => {
+        setCurrUser(e.target.value)
+        // socket.emit("choose_user", {currUser})
+    }
+
     return (
-        <select name="currUser" id="" onChange={(e) => setCurrUser(e.target.value)}>
+        <select name="currUser" id="" onChange={handleChange}>
             <option value="DEFAULT" disabled selected> 
             </option> 
             {options.map(opt => <option key={opt._id} value={opt._id}>{opt.name}</option>)}

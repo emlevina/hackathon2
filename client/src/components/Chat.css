@@ -3,6 +3,7 @@
     background: var(--bg-color);
     height: 100%;
     box-shadow: 0 0 10px var(--border-color);
+    min-width: fit-content;
 }
 
 .placeholder {
@@ -18,6 +19,10 @@
     border-bottom: 1px solid var(--border-color);
 }
 
+.active {
+    background: var(--secondary-color);
+}
+
 .contact:hover {
     color: var(--accent-color);
 }
@@ -28,7 +33,7 @@
     overflow-y: scroll;
 }
 
-.messagesPane{
+.messagesPane {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -37,7 +42,7 @@
 
 .messages {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     gap: 10rem;
     align-items: flex-start;
     padding: 10rem;

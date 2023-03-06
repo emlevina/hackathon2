@@ -13,9 +13,18 @@ const port = process.env.PORT || 3001;
 app.use(cors())
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+// Have Node serve the files for our built React app
+app.use(express.static(path.resolve(__dirname, '../client/build')));
 app.use('/api/users', users_router);
 app.use('/api/messages', messages_router);
 app.use('/api/conversations', convos_router);
+
+
+// All other GET requests not handled before will return our React app
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
+});
 
 const server = http.createServer(app);
 // SOCKET IO

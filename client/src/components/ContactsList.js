@@ -24,8 +24,8 @@ const Contact = ({ contact: { name, online, lastContacted, _id } }) => {
     }
 
     return (
-        <div onClick={clickHandler}>
-            <h3>{name}</h3>
+        <div onClick={clickHandler} className='contact'>
+            <p>{name}</p>
             {online && <small>online </small>}
             <small>{ }</small>
         </div>
@@ -47,7 +47,7 @@ const ContactsList = ({socket}) => {
     }, [currUser])
 
     return (
-        <div className='pane'>
+        <div className='contacts'>
             {contacts && contacts.map(contact => <Contact contact={contact} key={contact._id} />)}
         </div>
     );

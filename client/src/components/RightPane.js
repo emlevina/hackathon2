@@ -10,13 +10,14 @@ const RightPane = () => {
     const [dbUpdated, setDbUpdated] = useState(false)
 
     return (
-        <div className='pane'>
-            {currConvo ? (<>
-                <Messages data={[currConvo, currUser, dbUpdated, setDbUpdated]} />
-                <Input data={[currConvo, currUser, setDbUpdated]} /></>
-            ) : (<>Choose conversation on the left</>)}
 
-        </div>
+        currConvo
+            ? (<div className='messagesPane'>
+                <Messages data={[currConvo, currUser, dbUpdated, setDbUpdated]} />
+                <Input data={[currConvo, currUser, setDbUpdated]} /></div>
+            )
+            : (<p className='placeholder'>Choose conversation on the left</p>)
+
     );
 };
 

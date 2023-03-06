@@ -14,11 +14,18 @@ const Input = ({ data: [currConvo, currUser, setDbUpdated] }) => {
             })
     }
 
+    const onEnterPress = (e) => {
+        if (e.keyCode == 13 && e.shiftKey == false) {
+            e.preventDefault();
+            submitHandler(e);
+        }
+    }
+
     return (
-        <form onSubmit={submitHandler}>
-            <input type="text" name="message" id="message" value={value} onChange={(e) => {
+        <form onSubmit={submitHandler} className='input'>
+            <textarea name="message" id="message" value={value} onChange={(e) => {
                 setValue(e.currentTarget.value);
-            }} />
+            }} onKeyDown={onEnterPress}></textarea>
             <button type="submit">Send</button>
         </form>
     );

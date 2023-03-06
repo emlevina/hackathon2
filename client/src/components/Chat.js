@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import ContactsList from './ContactsList';
 import RightPane from './RightPane';
-import styles from './chat.module.css';
+import './Chat.css';
+import { UserContext } from '../context/UserContext'
 
 const Chat = () => {
+    const { currUser } = useContext(UserContext)
     return (
-        <div className={styles.chat}>
-            <ContactsList />
-            <RightPane />
+        <div className="chat">
+            {currUser
+                ? (<><ContactsList /><RightPane /></>)
+                : <p className='placeholder'>Please, choose a user</p>
+            }
         </div>
     );
 };

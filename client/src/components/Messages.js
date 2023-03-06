@@ -19,17 +19,17 @@ const Messages = ({ data: [currConvo, currUser, socket] }) => {
         socket.on('receive_message', (data) => {
             console.log(data);
             console.log(currConvo._id, data.conversationId)
-            if (currConvo._id === data.conversationId) {
-                setMessagesReceived((state) => [
-                    ...state,
-                    {
-                        text: data.message,
-                        date: data.__createdtime__,
-                        sender: data.sender,
-                        _id: messagesRecieved.length + 1
-                    },
-                ]);
-            }
+
+            setMessagesReceived((state) => [
+                ...state,
+                {
+                    text: data.message,
+                    date: data.__createdtime__,
+                    sender: data.sender,
+                    _id: messagesRecieved.length + 100
+                },
+            ]);
+
         });
         // Remove event listener on component unmount
         return () => socket.off('receive_message');
@@ -44,7 +44,7 @@ const Messages = ({ data: [currConvo, currUser, socket] }) => {
 
     return (
         <div className='messages'>
-            {messagesRecieved && messagesRecieved.sort((a,b)=> a.date > b.date? -1 : 1).map(message => <Message key={message._id} message={message} isMyMessage={currUser === message.sender} />)}
+            {messagesRecieved && messagesRecieved.sort((a, b) => a.date > b.date ? -1 : 1).map(message => <Message key={message._id} message={message} isMyMessage={currUser === message.sender} />)}
             {messages && messages.map(message => <Message key={message._id} message={message} isMyMessage={currUser === message.sender} />)}
         </div>
     );

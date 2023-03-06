@@ -8,6 +8,7 @@ export const ConvoProvider = ({ children }) => {
     const [currConvo, setCurrConvo] = useState();
     const setCurrConvoAndEmit = ({currConvo, currUser}) => {
         setCurrConvo(currConvo)
+        console.log('choose_convers')
         socket.emit("choose_convers", {currConvo, currUser})
     }
 

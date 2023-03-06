@@ -21,7 +21,7 @@ const server = http.createServer(app);
 // SOCKET IO
 const io = new Server(server, {
     cors: {
-        origin: 'http://localhost:3002',
+        origin: 'http://localhost:3000',
         methods: ['GET', 'POST'],
     },
 });
@@ -29,8 +29,31 @@ const io = new Server(server, {
 io.on('connection', (socket) => {
     console.log(`User connected ${socket.id}`);
 
-    // We can write our socket event listeners in here...
+    // socket.on('choose_convers', (data) => {
+    //     console.log(data)
+    //     const { currUser, currConvo } = data
+    //     let __createdtime__ = Date.now(); // Current timestamp
+    //     // Send message to all users currently in the room, apart from the user that just joined
+    //     socket.emit('receive_message', {
+    //         message: `${currUser} has joined the chat room`,
+    //         __createdtime__,
+    //     });
+    // });
+
+    socket.on('send_message', (data) => {
+        console.log("send_message", data)
+        const { currConvo, value, currUser } = data
+        let __createdtime__ = Date.now(); 
+
+        io.emit('receive_message', {
+            conversationId: currConvo._id,
+            sender: currUser,
+            message: value,
+            __createdtime__,
+        })
+    })
 });
+
 const start = async () => {
     try {
         await connectDB(process.env.MONGO_URI);

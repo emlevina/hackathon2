@@ -1,9 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../context/UserContext';
+import { ConvoContext } from '../context/ConvoContext';
 import { getUsers } from '../actions';
 
 const Dropdown = () => {
     const { currUser, setCurrUser, socket } = useContext(UserContext)
+    const { currConvo, setCurrConvo } = useContext(ConvoContext)
     const [options, setOptions] = useState([])
 
     useEffect(() => {
@@ -15,7 +17,7 @@ const Dropdown = () => {
 
     const handleChange = (e) => {
         setCurrUser(e.target.value)
-        // socket.emit("choose_user", {currUser})
+        setCurrConvo('')
     }
 
     return (

@@ -13,8 +13,8 @@ const RightPane = () => {
 
         currConvo
             ? (<div className='messagesPane'>
-                <Messages data={[currConvo, currUser, dbUpdated, setDbUpdated]} />
-                <Input data={[currConvo, currUser, setDbUpdated]} /></div>
+                <Messages data={[currConvo, currUser, dbUpdated, setDbUpdated, socket]} />
+                <Input data={[currConvo, currUser, setDbUpdated, socket]} /></div>
             )
             : (<p className='placeholder'>Choose conversation on the left</p>)
 

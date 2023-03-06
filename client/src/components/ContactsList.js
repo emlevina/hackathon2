@@ -5,7 +5,7 @@ import { ConvoContext } from '../context/ConvoContext';
 import { getConvo, getUsers, createConvo } from '../actions';
 
 const Contact = ({ contact: { name, online, lastContacted, _id } }) => {
-    const { currConvo, setCurrConvo } = useContext(ConvoContext)
+    const { currConvo, setCurrConvoAndEmit } = useContext(ConvoContext)
     const { currUser } = useContext(UserContext)
 
     const clickHandler = (e) => {
@@ -15,16 +15,18 @@ const Contact = ({ contact: { name, online, lastContacted, _id } }) => {
                 console.log(data)
                 if (!data.conv) {
                     createConvo(currUser, _id)
-                        .then(data => setCurrConvo(data.conv._id))
+                        .then(data => {
+                            setCurrConvoAndEmit({currConvo: data.conv, currUser})
+                        })
                 } else {
-                    setCurrConvo(data.conv._id)
+                    setCurrConvoAndEmit({currConvo: data.conv, currUser})
                 }
             })
 
     }
 
     return (
-        <div onClick={clickHandler} className='contact'>
+        <div onClick={clickHandler} className={currConvo && currConvo.participants.includes(_id) ? 'contact active' : 'contact'}>
             <p>{name}</p>
             {online && <small>online </small>}
             <small>{ }</small>
@@ -32,8 +34,8 @@ const Contact = ({ contact: { name, online, lastContacted, _id } }) => {
     )
 }
 
-const ContactsList = ({socket}) => {
-    const { currUser, setCurrUser } = useContext(UserContext) // default user Ekaterina
+const ContactsList = ({ socket }) => {
+    const { currUser, setCurrUser } = useContext(UserContext)
     const [contacts, setContacts] = useState([])
 
     useEffect(() => {

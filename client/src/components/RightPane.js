@@ -12,7 +12,7 @@ const RightPane = () => {
     return (
 
         currConvo
-            ? (<div className='pane messagesPane'>
+            ? (<div className='messagesPane'>
                 <Messages data={[currConvo, currUser, dbUpdated, setDbUpdated]} />
                 <Input data={[currConvo, currUser, setDbUpdated]} /></div>
             )

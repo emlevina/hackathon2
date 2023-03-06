@@ -47,7 +47,7 @@ const ContactsList = () => {
     }, [currUser])
 
     return (
-        <div className='pane contacts'>
+        <div className='contacts'>
             {contacts && contacts.map(contact => <Contact contact={contact} key={contact._id} />)}
         </div>
     );

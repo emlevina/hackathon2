@@ -5,10 +5,6 @@
     box-shadow: 0 0 10px var(--border-color);
 }
 
-.pane {
-    /* padding: 10px; */
-}
-
 .placeholder {
     text-align: center;
     align-self: center;
@@ -27,15 +23,13 @@
 }
 
 .contacts {
-    /* background: gray; */
-    min-width: 150px;
+    min-width: 150rem;
     border-right: 1px solid var(--border-color);
     overflow-y: scroll;
 }
 
 .messagesPane{
     width: 100%;
-    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: end;
@@ -49,6 +43,7 @@
     padding: 10rem;
     font-size: 14rem;
     overflow-y: scroll;
+    overflow-wrap: break-word;
 }
 
 .input {
@@ -60,7 +55,6 @@
 }
 
 .input textarea {
-    /* width: 100%; */
     flex: 1 1 100%;
     min-height: 100px;
     resize: none;
@@ -72,7 +66,6 @@
 
 .input button {
     flex-grow: 2;
-    /* position: absolute; */
     right: 0;
     border: none;
     background: none;
@@ -84,9 +77,16 @@
     color: var(--accent-color)
 }
 
+.message {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
 .message p {
     border-radius: 5px;
-    padding: 5rem;
+    padding: 5rem 10rem;
+    max-width: 300rem;
 }
 
 .message small {
@@ -96,6 +96,7 @@
 
 .myMessage {
     align-self: flex-end;
+    align-items: flex-end;
 }
 
 .myMessage p {
@@ -104,6 +105,7 @@
 
 .notMyMessage {
     align-self: flex-start;
+    align-items: flex-start;
 }
 
 .notMyMessage p {

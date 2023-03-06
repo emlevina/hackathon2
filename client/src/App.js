@@ -5,7 +5,6 @@ import Dropdown from './components/Dropdown';
 function App() {
   return (
     <div className="app">
-
       <Dropdown />
       <Chat />
     </div>

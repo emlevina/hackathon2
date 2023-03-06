@@ -1,0 +1,111 @@
+.chat {
+    display: flex;
+    background: var(--bg-color);
+    height: 100%;
+    box-shadow: 0 0 10px var(--border-color);
+}
+
+.pane {
+    /* padding: 10px; */
+}
+
+.placeholder {
+    text-align: center;
+    align-self: center;
+    justify-self: start;
+    width: 100%;
+}
+
+.contact {
+    cursor: pointer;
+    padding: 10rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.contact:hover {
+    color: var(--accent-color);
+}
+
+.contacts {
+    /* background: gray; */
+    min-width: 150px;
+    border-right: 1px solid var(--border-color);
+    overflow-y: scroll;
+}
+
+.messagesPane{
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+.messages {
+    display: flex;
+    flex-direction: column;
+    gap: 10rem;
+    align-items: flex-start;
+    padding: 10rem;
+    font-size: 14rem;
+    overflow-y: scroll;
+}
+
+.input {
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    align-items: flex-start;
+    height: 100px;
+    bottom: 0;
+}
+
+.input textarea {
+    /* width: 100%; */
+    flex: 1 1 100%;
+    min-height: 100px;
+    resize: none;
+    border: none;
+    outline: none;
+    background: none;
+    padding: 10rem;
+}
+
+.input button {
+    flex-grow: 2;
+    /* position: absolute; */
+    right: 0;
+    border: none;
+    background: none;
+    padding: 10rem;
+    z-index: 1;
+}
+
+.input button:hover {
+    color: var(--accent-color)
+}
+
+.message p {
+    border-radius: 5px;
+    padding: 5rem;
+}
+
+.message small {
+    font-size: 10rem;
+    color: gray;
+}
+
+.myMessage {
+    align-self: flex-end;
+}
+
+.myMessage p {
+    background: var(--primary-color);
+}
+
+.notMyMessage {
+    align-self: flex-start;
+}
+
+.notMyMessage p {
+    background: var(--secondary-color);
+}

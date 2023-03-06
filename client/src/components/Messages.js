@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { getMessages } from '../actions';
 
-const Message = ({message: {text}, isMyMessage}) => {
+const Message = ({ message: { text, date }, isMyMessage }) => {
     return (
-        <div>
-            <p style={isMyMessage ? {textAlign: "right", background: "gray"} : {textAlign: "left", background: "lightgray"}}>{text}</p>
+        <div className={`message ${isMyMessage ? 'myMessage' : 'notMyMessage'}`}>
+            <p>{text}</p>
+            <small>{new Date(date).toLocaleString()}</small>
         </div>
     )
 }
 
-const Messages = ({data: [currConvo, currUser, dbUpdated, setDbUpdated]}) => {
+const Messages = ({ data: [currConvo, currUser, dbUpdated, setDbUpdated] }) => {
     const [messages, setMessages] = useState([])
 
     useEffect(() => {
@@ -20,8 +21,8 @@ const Messages = ({data: [currConvo, currUser, dbUpdated, setDbUpdated]}) => {
     }, [currConvo, dbUpdated])
 
     return (
-        <div>
-            {messages && messages.map(message => <Message key={message._id} message={message} isMyMessage={currUser === message.sender}/>)}
+        <div className='messages'>
+            {messages && messages.map(message => <Message key={message._id} message={message} isMyMessage={currUser === message.sender} />)}
         </div>
     );
 };

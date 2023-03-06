@@ -1,5 +1,15 @@
+:root {
+  --accent-color: blue;
+  --primary-color: lightblue;
+  --secondary-color: rgb(195, 195, 195);
+  --border-color: rgb(173, 173, 173);
+  --bg-color: rgb(236, 236, 236);
+  font-size: 6.25%;
+}
+
 * {
   margin: 0;padding: 0;box-sizing: border-box;
+  font-family: Montserrat, sans-serif;
 }
 
 .app {
@@ -7,8 +17,7 @@
   align-items: center;
   justify-content: center;
   padding: 100px;
+  font-size: 16rem;
 }
 
-.pane {
-  padding: 10px;
-}
+

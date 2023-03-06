@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { createMessage } from '../actions';
 
-const Input = ({ data: [currConvo, currUser, setDbUpdated, socket] }) => {
+const Input = ({ data: [currConvo, currUser, socket] }) => {
     const [value, setValue] = useState('')
 
     const submitHandler = (e) => {
@@ -11,7 +11,6 @@ const Input = ({ data: [currConvo, currUser, setDbUpdated, socket] }) => {
             .then(data => {
                 console.log(data)
                 setValue('')
-                // setDbUpdated(true)
             })
 
     }

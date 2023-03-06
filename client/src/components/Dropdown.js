@@ -21,8 +21,8 @@ const Dropdown = () => {
     }
 
     return (
-        <select name="currUser" id="" onChange={handleChange}>
-            <option value="DEFAULT" disabled selected> 
+        <select name="currUser" id="" onChange={handleChange} defaultValue="DEFAULT">
+            <option value="DEFAULT" disabled> 
             </option> 
             {options.map(opt => <option key={opt._id} value={opt._id}>{opt.name}</option>)}
         </select>

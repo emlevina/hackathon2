@@ -7,14 +7,13 @@ import { UserContext } from '../context/UserContext';
 const RightPane = () => {
     const { currConvo, socket } = useContext(ConvoContext)
     const { currUser } = useContext(UserContext)
-    const [dbUpdated, setDbUpdated] = useState(false)
 
     return (
 
         currConvo
             ? (<div className='messagesPane'>
-                <Messages data={[currConvo, currUser, dbUpdated, setDbUpdated, socket]} />
-                <Input data={[currConvo, currUser, setDbUpdated, socket]} /></div>
+                <Messages data={[currConvo, currUser, socket]} />
+                <Input data={[currConvo, currUser, socket]} /></div>
             )
             : (<p className='placeholder'>Choose conversation on the left</p>)
 

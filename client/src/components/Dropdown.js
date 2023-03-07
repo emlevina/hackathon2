@@ -4,13 +4,13 @@ import { ConvoContext } from '../context/ConvoContext';
 import { getUsers } from '../actions';
 
 const Dropdown = () => {
-    const { currUser, setCurrUser, socket } = useContext(UserContext)
-    const { currConvo, setCurrConvo } = useContext(ConvoContext)
+    const { setCurrUser } = useContext(UserContext)
+    const { setCurrConvo } = useContext(ConvoContext)
     const [options, setOptions] = useState([])
 
     useEffect(() => {
         getUsers().then(data => {
-            console.log(data)
+            // console.log(data)
             setOptions(data.users)
         })
     }, [])
@@ -21,7 +21,7 @@ const Dropdown = () => {
     }
 
     return (
-        <select name="currUser" id="" onChange={handleChange} defaultValue="DEFAULT">
+        <select name="currUser" id="" onChange={handleChange} defaultValue="DEFAULT" className='dropdown' >
             <option value="DEFAULT" disabled> 
             </option> 
             {options.map(opt => <option key={opt._id} value={opt._id}>{opt.name}</option>)}

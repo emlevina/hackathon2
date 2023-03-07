@@ -17,8 +17,8 @@ const Messages = ({ data: [currConvo, currUser, socket] }) => {
     // Runs whenever a socket event is recieved from the server
     useEffect(() => {
         socket.on('receive_message', (data) => {
-            console.log(data);
-            console.log(currConvo._id, data.conversationId)
+            // console.log(data);
+            // console.log(currConvo._id, data.conversationId)
 
             setMessagesReceived((state) => [
                 ...state,
@@ -26,7 +26,7 @@ const Messages = ({ data: [currConvo, currUser, socket] }) => {
                     text: data.message,
                     date: data.__createdtime__,
                     sender: data.sender,
-                    _id: messagesRecieved.length + 100
+                    _id: state.length + 100
                 },
             ]);
 

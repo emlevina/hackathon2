@@ -4,6 +4,13 @@
     height: 100%;
     box-shadow: 0 0 10px var(--border-color);
     min-width: fit-content;
+    position: relative;
+}
+
+.dropdown {
+    position: absolute;
+    right: 0;
+    border: 1px solid var(--border-color);
 }
 
 .placeholder {

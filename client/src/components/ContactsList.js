@@ -4,7 +4,7 @@ import { UserContext } from '../context/UserContext';
 import { ConvoContext } from '../context/ConvoContext';
 import { getConvo, getUsers, createConvo } from '../actions';
 
-const Contact = ({ contact: { name, online, lastContacted, _id } }) => {
+const Contact = ({ contact: { name, online, _id } }) => {
     const { currConvo, setCurrConvoAndEmit } = useContext(ConvoContext)
     const { currUser } = useContext(UserContext)
 
@@ -12,7 +12,7 @@ const Contact = ({ contact: { name, online, lastContacted, _id } }) => {
         e.preventDefault()
         getConvo(currUser, _id)
             .then(data => {
-                console.log(data)
+                // console.log(data)
                 if (!data.conv) {
                     createConvo(currUser, _id)
                         .then(data => {
@@ -34,8 +34,8 @@ const Contact = ({ contact: { name, online, lastContacted, _id } }) => {
     )
 }
 
-const ContactsList = ({ socket }) => {
-    const { currUser, setCurrUser } = useContext(UserContext)
+const ContactsList = () => {
+    const { currUser } = useContext(UserContext)
     const [contacts, setContacts] = useState([])
 
     useEffect(() => {

@@ -15,7 +15,6 @@ const getMessages = async (req, res) => {
     console.log(req.params) // passing conversation ID
     try {
         if(req.params.messages !== 'undefined'){
-            console.log('seems ok')
             const messages = await Message.find(req.params)
             res.status(201).json({ messages })
         } else {

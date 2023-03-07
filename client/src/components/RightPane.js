@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import Input from './Input';
 import Messages from './Messages';
 import { ConvoContext } from '../context/ConvoContext';
